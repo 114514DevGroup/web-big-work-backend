@@ -8,6 +8,7 @@ package com.DevGroup114514;
 import java.util.Date;
 
 public class Video {
+    int id;
     String src;
     String title;
     User author;
@@ -24,7 +25,8 @@ public class Video {
         this.comments = new Comment[0];
     }
 
-    public Video(String src, String title, User author, int seen, Date date, Comment[] comments) {
+    public Video(int id, String src, String title, User author, int seen, Date date, Comment[] comments) {
+        this.id = id;
         this.src = src;
         this.title = title;
         this.author = author;
