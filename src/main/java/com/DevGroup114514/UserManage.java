@@ -8,5 +8,5 @@ package com.DevGroup114514;
 public interface UserManage {
     public boolean register(String username, String password);
     public User login(String username, String password);
-    public boolean delete(String username);
+    public boolean delete(int id);
 }

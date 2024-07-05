@@ -6,7 +6,7 @@ package com.DevGroup114514;
  */
 
 public interface VideoManage {
-    public boolean sendVideo(Video video);
+    // public boolean sendVideo(Video video);
     public Video[] getRandomVideo();
-    public boolean deleteVideo(int id);
+    // public boolean deleteVideo(int id);
 }

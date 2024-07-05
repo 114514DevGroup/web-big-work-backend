@@ -6,5 +6,5 @@ package com.DevGroup114514;
  */
 
 public interface UserCount {
-    public boolean put(User user);
+    // public boolean put(User user);
 }

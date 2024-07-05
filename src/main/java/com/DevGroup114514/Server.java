@@ -34,7 +34,7 @@ public class Server {
 
         httpServer.createContext("/userManager/register", new UserManagerRegister());
         httpServer.createContext("/userManager/login", new UserManagerLogin());
-        // httpServer.createContext("/userManager/delate", new UserManagerDelete());
+        httpServer.createContext("/userManager/delate", new UserManagerDelete());
         // httpServer.createContext("/userManager/setting", new UserManagerSetting());
 
         // httpServer.createContext("/videoManager/send/sendVedio",new VideoManageSendVideo());
@@ -93,23 +93,38 @@ public class Server {
         }
     }
 
-// static class UserManagerDelete implements HttpHandler {
-//     @Override
-//     public void handle(HttpExchange httpExchange) throws IOException {
-//         if (httpExchange.getRequestMethod().equals("DELETE")) {
-//
-//         }
-//     }
-// }
-//
+ static class UserManagerDelete implements HttpHandler {
+     @Override
+     public void handle(HttpExchange httpExchange) throws IOException {
+         if (httpExchange.getRequestMethod().equals("DELETE")) {
+             Reader reader = new InputStreamReader(httpExchange.getRequestBody());
+             UserRegister userRegister = gson.fromJson(reader, UserRegister.class);
+
+             if (controller.delete(userRegister.id)) {
+                 httpExchange.sendResponseHeaders(200, 0);
+             } else {
+                 httpExchange.sendResponseHeaders(401, 0);
+             }
+         }
+     }
+ }
+
 // static class UserManagerSetting implements HttpHandler {
 //     @Override
 //     public void handle(HttpExchange httpExchange) throws IOException {
-//         if (httpExchange.getRequestMethod().equals("POST")) {
+//         if (httpExchange.getRequestMethod().equals("PUT")) {
+//             Reader reader = new InputStreamReader(httpExchange.getRequestBody());
+//             User user = gson.fromJson(reader, User.class);
 //
+//             if (controller.put(user)) {
+//                 httpExchange.sendResponseHeaders(200, 0);
+//             } else {
+//                 httpExchange.sendResponseHeaders(401, 0);
+//             }
 //         }
 //     }
 // }
+
 // static class VideoManageSendVideo implements HttpHandler {
 //     @Override
 //     public void handle(HttpExchange httpExchange) throws IOException {
@@ -155,8 +170,12 @@ static class VideoManageGetRandomVideo implements HttpHandler {
 //         }
 //     }
 
-class UserLogin {
+    static class UserLogin {
         String username;
         String password;
+    }
+
+    static class UserRegister {
+        int id;
     }
 }

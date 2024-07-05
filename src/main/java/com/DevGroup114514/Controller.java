@@ -22,7 +22,7 @@ public class Controller implements UserCount, UserManage, VideoManage {
     }
 
     @Override
-    public boolean delete(String username) {
+    public boolean delete(int id) {
         return false;
     }
 
